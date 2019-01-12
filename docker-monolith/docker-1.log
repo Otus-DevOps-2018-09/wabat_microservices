@@ -1,0 +1,18 @@
+docker images
+
+REPOSITORY                 TAG                 IMAGE ID            CREATED              SIZE
+yourname/ubuntu-tmp-file    latest              a7a0942d78aa        About a minute ago   117MB
+hello-world                latest              fce289e99eb9        10 days ago          1.84kB
+ubuntu                     16.04               b0ef3016420a        13 days ago          117MB
+
+image - набор слоев файловой системы
+___________________________________________________________________________________________________
+
+docker ps -a
+
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+84c6b96e64ea        ubuntu:16.04        "/bin/bash"         30 hours ago        Exited (255) 27 hours ago                       musing_archimedes
+888aa3a6d7cf        hello-world         "/hello"            30 hours ago        Exited (0) 30 hours ago                         loving_edison
+7414da47647a        ubuntu:16.04        "/bin/bash"  
+
+container - запущенный экземпляр image
