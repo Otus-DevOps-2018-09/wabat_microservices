@@ -33,5 +33,4 @@ docker run --rm --pid host -ti tehbilly/htop
 
 [namespaces](https://blog.selectel.ru/mexanizmy-kontejnerizacii-namespaces/)
 
-
 </details>
