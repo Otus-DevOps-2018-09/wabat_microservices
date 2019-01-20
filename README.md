@@ -1,8 +1,6 @@
 ## wabat_microservices
 [![Build Status](https://travis-ci.com/Otus-DevOps-2018-09/wabat_microservices.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2018-09/wabat_microservices)
 
-(https://travis-ci.com/Otus-DevOps-2018-09/wabat_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2018-09/wabat_infra)
-
 wabat microservices repository
 
 ### docker-1
@@ -17,9 +15,10 @@ wabat microservices repository
 
 docker использует [go templates](https://golang.org/pkg/text/template/) для форматирования вывода
 
-</detail>
+</details>
 
 ### docker-2
+
 <details>
 <summary>docker container</summary>
 
