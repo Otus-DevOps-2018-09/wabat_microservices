@@ -24,12 +24,29 @@ docker использует [go templates](https://golang.org/pkg/text/template/
 
 docker mashine - инструмент для управления машинами с dcoker 
 
-docker run --rm -ti tehbilly/htop
-docker run --rm --pid host -ti tehbilly/htop
+docker run --pid 
+
 по умолчанию PID namespace контейнера включен, 
 ключ --pid используется для управления PID namespace контейнера, для включения в namespace другого контейнера или хоста на котором он  запущен 
 
 
 [namespaces](https://blog.selectel.ru/mexanizmy-kontejnerizacii-namespaces/)
+
+</details>
+
+### docker-3
+
+<details>
+<summary>Сбрка образов</summary>
+
+#### Рекомендации
+- создавать эфемерные контейнеры со statless приложениями
+- использовать отдельные директории для build context
+- использовать .dockerignore на манер .gitignore
+
+#### Оптимизация размера
+- не устанавливать не нужные пакеты
+- использовать multistage builds
+- собирать аргументы инструкции RUN
 
 </details>
