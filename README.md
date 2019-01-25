@@ -50,3 +50,29 @@ docker run --pid
 - собирать аргументы инструкции RUN
 
 </details>
+
+### docker-4
+
+<details>
+<summary>Сети docker, docker-compose</summary>
+
+#### Сети docker
+типы сетевых драйверов:
+- bridge (default)
+- host
+- none
+- macvlan 
+- 3rd party
+
+[подробнее тут](https://success.docker.com/article/networking)
+
+#### docker-compose
+
+позволяет составлять список инструкций и создавать комплексные окружения, управлять процессом сборки и запуска сервисов.
+
+по умолчанию docker compose читает два файла docker-compose.yaml и docker-compose.override.yaml,
+переопределить которые можно другими файлами следующими после ключа -f при старте, при этом каждый последующий будет переопределять предыдущий 
+
+считается что на каждую версию приложения нужно собирать образ [заново](https://stackoverflow.com/questions/52689570/how-to-change-source-code-without-rebuilding-image-in-docker)
+
+</details>
