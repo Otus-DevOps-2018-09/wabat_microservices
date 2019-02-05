@@ -76,3 +76,16 @@ docker run --pid
 считается что на каждую версию приложения нужно собирать образ [заново](https://stackoverflow.com/questions/52689570/how-to-change-source-code-without-rebuilding-image-in-docker)
 
 </details>
+
+### gitlab-ci-1
+
+<details>
+<summary>Устройство Gitlab CI. Построение процесса непрерывной интеграции</summary>
+
+[рекомендации по подбору сервера](https://docs.gitlab.com/ce/install/requirements.html)
+
+в проекте может быть определен CI/CD пайплайн, задачи (jobs) входящие в пайплайн должны исполняться на runners, установку и регистрацию которых можно производить [в ручную](https://docs.gitlab.com/runner/install/) или автоматически, например при помощи [ansible-gitlab-runner](https://github.com/haroldb/ansible-gitlab-runner)
+
+настроить интеграцию со slack можно при помощи web-hook в Project > Settings > Integrations > Slack notifications
+
+</details>
