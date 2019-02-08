@@ -89,3 +89,41 @@ docker run --pid
 настроить интеграцию со slack можно при помощи web-hook в Project > Settings > Integrations > Slack notifications
 
 </details>
+
+### gitlab-ci-2
+
+<details>
+<summary>Непрерывная поставка с Gitlab CI</summary>
+
+Схема непрерывной поставки:
+
+1) сервера gitlab
+
+2) runners (установленных локально на сервере gitlab)
+- docker executor, с дефлтным базовым образом gitlab/gitlab-runner:latest, запускающим задания без тега
+- shell executor, запускающий задания с тегом `ansible` в контейнере с установленным ansible; [dockerfile](https://github.com/Otus-DevOps-2018-09/wabat_microservices/tree/master/gitlab-ci/continious-delivery/alpine-ansible-runner/Dockerfile)
+
+для работы с динамическими окружениями необходимо: 
+
+указать в ansible.cfg пользователя, приватный ключ, путь к инвентарному скрипту; 
+ключи-ssh; 
+файлы с учетными данными и скрипт gce.py монтируются к контейнеру к папке /etc/ansible/inventory;
+
+
+3) ansible-playbooks: 
+- выполняющихся для создания/удаления инстансов
+- выполняющиеся на созданных инстансах для установки среды и самого приложения (docker, git clone)
+
+Файлы playbook находятся в директории gitlab-ci/continious-delivery/ansible-playbooks.
+
+***
+Схема реализована на основе Google Cloud Platform и динамического инвентарного скрипта gce.py.
+В vars.yml необходимо заполнить переменные:
+
+из файла ключа Сервисные аккаунта в проекте GCE,
+
+ключ-ssh для создаваемых инстансов,
+
+а так же имя этого инстанса.
+
+</details>

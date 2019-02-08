@@ -1,0 +1,8 @@
+gcp_project: projectname
+gcp_cred_kind: serviceaccount
+gcp_cred_file: /path/to/file/.json
+zone: "us-central1-a"
+region: "us-central1"
+stage_hostname: 
+service_account_email: 
+deploy_kee: username:ssh-rsa AAAAB3N... user@host
