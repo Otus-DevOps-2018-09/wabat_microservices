@@ -3,26 +3,96 @@ stages:
   - build
   - test
   - deploy
+  - review
+  - stage
+  - production
+
 variables:
   DATABASE_URL: 'mongodb://mongo/user_posts'
-before_script:
-  - cd reddit
-  - bundle install
+  PLAYBOOK_PATH: 'gitlab-ci/feature-deploy/ansible-playbooks/'
+
 build_job:
   stage: build
   script:
     - echo 'Building'
+ 
 test_integration_job:
   stage: test
   script:
     - echo 'Testing 2'
+
 test_unit_job:
+  before_script:
+    - cd reddit
+    - bundle install
   stage: test
   services:
     - mongo:latest
   script:
     - ruby simpletest.rb
-deploy_job:
-  stage: deploy
+
+deploy_dev_job:
+  stage: review
   script:
     - echo 'Deploy'
+  environment:
+    name: dev
+    url: http://dev.example.com
+
+branch review:
+  stage: review
+  script: echo "Deploy $CI_ENVIRONMENT_SLUG"
+  environment:
+    name: branch/$CI_COMMIT_REF_NAME
+    url: http://$CI_ENVIRONMENT_SLUG.example.com
+  only:
+    - branches
+  except:
+    - master
+
+
+staging:
+  stage: stage
+  when: manual
+  only:
+    - /^\d+\.\d+\.\d+/
+  script:
+    - echo 'Deploy'
+  environment:
+    name: stage
+    url: http://beta.example.com
+
+staging_server:
+  stage: stage
+  when: manual
+  only:
+    - branches
+  tags:
+    - ansible
+  script:
+    - echo $CI_PROJECT_PATH
+    - echo $CI_PROJECT_DIR
+    - echo $PLAYBOOK_PATH
+    - ansible-playbook $CI_PROJECT_DIR/$PLAYBOOK_PATH/create-instance.yml -vvv
+    - ansible-playbook $CI_PROJECT_DIR/$PLAYBOOK_PATH/install-docker.yml -vvv
+    - ansible-playbook $CI_PROJECT_DIR/$PLAYBOOK_PATH/ci-tasks.yml -vvv 
+    - /etc/ansible/inventory/gce.py --list
+
+delite_failing_stage:
+  stage: stage
+  when: manual
+  tags:
+    - ansible
+  script:
+    - ansible-playbook $CI_PROJECT_DIR/$PLAYBOOK_PATH/delete-instance.yml -vvv
+
+production:
+  stage: production
+  when: manual
+  only:
+    - /^\d+\.\d+\.\d+/
+  script:
+    - echo 'Deploy'
+  environment:
+    name: production
+    url: http://example.com
