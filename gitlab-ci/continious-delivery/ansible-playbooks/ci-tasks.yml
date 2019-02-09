@@ -1,0 +1,19 @@
+- hosts: "{{ stage_hostname }}"
+  gather_facts: no
+  connection: ssh
+  become: yes
+  vars_files:
+    - "vars.yml"
+  environment:
+    PORT: 9292
+  tasks:
+
+    - include: clone-repo.yml
+      tags: 
+        - clone
+
+    - include: docker-build.yml
+      tags:
+        - docker-compose
+
+    

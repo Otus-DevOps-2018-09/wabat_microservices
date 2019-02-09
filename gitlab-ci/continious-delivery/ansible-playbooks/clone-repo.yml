@@ -1,0 +1,4 @@
+- name: clone repo
+  git:
+    repo: https://github.com/Otus-DevOps-2018-09/wabat_microservices.git
+    dest: /srv/stage

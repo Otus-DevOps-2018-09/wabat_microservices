@@ -1,0 +1,9 @@
+- hosts: "{{ stage_hostname }}"
+  connection: ssh
+  sudo: True
+  vars_files:
+    - "vars.yml"
+  tasks:
+    - debug: msg=route66
+    - include_role:
+        name: geerlingguy.docker

@@ -1,0 +1,20 @@
+- name: Create an instance
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  vars_files:
+    - "vars.yml"
+  tasks:
+    - name: delete test-instances
+      # Basic termination of instance.
+      gce:
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ gcp_cred_file }}"
+        project_id: "{{ gcp_project }}"
+        # instance_names: "{{ gce.instance_names }}"
+        instance_names: "{{ stage_hostname }}"
+        zone: "{{ zone }}"
+        state: absent
+      tags:
+        - delete
+  
