@@ -1,9 +1,9 @@
 version: '3.3'
 services:
   ui:
-    volumes:
+    #volumes:
       # local docker-mashine only
-      - ./ui:/home
-    command: "puma --debug -w 2"
+      #- ./ui:/home
+    #command: "puma --debug -w 2"
   post:
   comment:

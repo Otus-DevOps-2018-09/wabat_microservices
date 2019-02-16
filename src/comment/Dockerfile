@@ -20,6 +20,6 @@ COPY --from=bundle /usr/local/bundle/ /usr/local/bundle/
 COPY --from=bundle /app/ /app/
 
 ENV COMMENT_DATABASE_HOST comment_db
-ENV COMMENT_DATABASE comments
+ENV COMMENT_DATABASE comment
 
 CMD ["puma"]
