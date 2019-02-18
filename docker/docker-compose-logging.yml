@@ -1,0 +1,39 @@
+version: '3'
+services:
+
+  zipkin:
+    image: openzipkin/zipkin:2.11.8
+    ports:
+      - "9411:9411"
+    networks:
+      - back_net
+      - front_net
+
+  fluentd:
+    image: ${USER_NAME}/fluentd:${tag}
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    networks:
+      - back_net
+      - front_net
+  elasticsearch:
+    #set sudo `sysctl -w vm.max_map_count=262144` on docker-host
+    image:  elasticsearch:6.5.4
+    expose:
+      - "9200"
+    ports:
+      - "9200:9200"
+    networks:
+      - back_net
+      - front_net
+  kibana:
+    image: kibana:6.5.4
+    ports:
+      - "5601:5601"
+    networks:
+      - back_net
+      - front_net
+networks:
+  back_net:
+  front_net:
