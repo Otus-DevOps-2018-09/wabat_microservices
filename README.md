@@ -129,3 +129,20 @@ docker run --pid
 </details>
 
 
+### log data analyze 
+
+<details>
+<summary>usful links</summary>
+[grok template debug](https://grokdebug.herokuapp.com)
+</details>
+
+### kubernetes-1
+
+<details>
+<summary>kubernetes-hard-way</summary>
+
+repository contains ansible playbooks for automating all steps of [Kubernetes The Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/README.md) tutorial.
+
+> Install and configure The Google Cloud SDK https://cloud.google.com/sdk/downloads.
+
+</details>
