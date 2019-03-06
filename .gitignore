@@ -5,3 +5,4 @@ imported_roles/
 plan*
 .env
 terraform-google-vault/
+tls.*
